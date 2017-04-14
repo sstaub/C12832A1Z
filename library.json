@@ -1,0 +1,14 @@
+{
+  "name": "C12832A1Z",
+  "keywords": "mbed, lcd, Application Board, mbed LPC1768",
+  "description": "A library for the LCD of the mbed application board.",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/sstaub/C12832A1Z"
+  },
+  "version": "1.0.0",
+  "frameworks": "mbed",
+  "platforms": "*"
+}
+
