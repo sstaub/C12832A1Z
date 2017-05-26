@@ -122,7 +122,7 @@ display functions<br>
 **void display(uint8_t display, uint8_t value)**<br>
 display functions<br>
 >**Parameter display**<br>
->CONTRAST set diplay contrast
+>CONTRAST set diplay contrast<br>
 >**Parameter value**<br>
 >value -> set the contrast value from 0 to 63, default is 31<br>
 
