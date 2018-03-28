@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/sstaub/C12832A1Z"
   },
-  "version": "1.0.1",
+  "version": "1.1.0",
   "frameworks": "mbed",
   "platforms": "*"
 }
