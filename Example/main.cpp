@@ -51,7 +51,7 @@ int main() {
     lcd.display(INVERT);     // display inverted
     lcd.display(BOTTOM);     // display rotated
     wait(2);
-    lcd.display(DEFAULT);    // display normal
+    lcd.display(NORM);    // display normal
     lcd.display(TOPVIEW);    // display normal orientation
     wait(2);
     }
