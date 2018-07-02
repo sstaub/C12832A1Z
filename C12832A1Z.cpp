@@ -42,7 +42,7 @@ void C12832A1Z::display(uint8_t display) {
   if(display == INVERT) { // invert display
     write_command(0xA7);
     }
-  if(display == DEFAULT) { // set to normal display
+  if(display == NORM) { // set to normal display
     write_command(0xA6);
     }
   if (display == TOPVIEW) { // normal orientation
