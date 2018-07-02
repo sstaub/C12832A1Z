@@ -70,7 +70,7 @@ int main() {
     lcd.display(INVERT);     // display inverted
     lcd.display(BOTTOM);     // display rotated
     wait(2);
-    lcd.display(DEFAULT);    // display normal
+    lcd.display(NORM);    // display normal
     lcd.display(TOPVIEW);    // display normal orientation
     wait(2);
     }
@@ -116,7 +116,7 @@ display functions<br>
 >BOTTOM (default) set display orientation 0°<br>
 >TOPVIEW set display oriention to 180°<br> 
 >INVERT invert the pixels<br>
->DEFAULT normal pixel display<br>
+>NORM normal pixel display<br>
 >CONTRAST set display contrast to default<br>
 
 **void display(uint8_t display, uint8_t value)**<br>
