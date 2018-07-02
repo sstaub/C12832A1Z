@@ -30,7 +30,7 @@ enum {MANUAL, AUTO};
   * @param ON display on, default
   * @param OFF display off
   * @param SLEEP sets the display to sleep mode
-  * @param DEFAULT default
+  * @param NORM default
   * @param INVERT inverts display
   * @param BOTTOM rotate the screento 180°
   * @param TOPVIEW default 0° rotate the screento 180°
@@ -230,7 +230,7 @@ public:
     * @param display BOTTOM (default) set display orientation 0°
     * @param display TOPVIEW set display oriention to 180°
     * @param display INVERT invert the pixels
-    * @param display DEFAULT normal pixel display
+    * @param display NORM normal pixel display
     * @param display CONTRAST set display contrast to default
     *
     */
