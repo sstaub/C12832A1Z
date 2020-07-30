@@ -14,7 +14,7 @@ It uses better algorithms (Bresenham) for the graphics than the original library
 
 ## Example
 
-Here is an example for the application board with the mbed lpc1768.
+Here is an example for the application board with the mbed lpc1768 for mbed 6
 
 ```
 // display test for C12832A1Z mbed Application Board
@@ -51,28 +51,28 @@ int main() {
   lcd.locate(70, 22);
   lcd.printf("C12832A1Z");
 
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST, 16); // contrast low
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST, 40); // contrast high
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST);     // contrast default
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(OFF);          // display off
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(ON);           // display on
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(SLEEP);        // display sleep mode
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(ON);
 
   while(1) {                 // main loop
     lcd.display(INVERT);     // display inverted
     lcd.display(BOTTOM);     // display rotated
-    wait(2);
+    ThisThread::sleep_for(2s);
     lcd.display(NORM);    // display normal
     lcd.display(TOPVIEW);    // display normal orientation
-    wait(2);
+    ThisThread::sleep_for(2s);
     }
   }
 
@@ -107,7 +107,7 @@ draw a circle<br>
 **void cls()**<br>
 clears the screen
 
-**void display(uint8_t display)**<br>
+**void display(modes_t display)**<br>
 display functions<br>
 >**Parameter display**<br>
 >ON switch display on, or wake up from sleep<br>
@@ -119,7 +119,7 @@ display functions<br>
 >NORM normal pixel display<br>
 >CONTRAST set display contrast to default<br>
 
-**void display(uint8_t display, uint8_t value)**<br>
+**void display(modes_t display, uint8_t value)**<br>
 display functions<br>
 >**Parameter display**<br>
 >CONTRAST set diplay contrast<br>
@@ -204,7 +204,7 @@ draw a rounded rect<br>
 >color -> 1 set pixel, 0 erase pixel<br>
 
 **void update()**<br>
-**void update(uint8_t mode)**<br>
+**void update(update_t mode)**<br>
 update to copy display buffer to lcd<br>
 >**Parameter mode**<br>
 >AUTO set update mode to auto, default<br>
