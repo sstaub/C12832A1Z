@@ -32,27 +32,27 @@ int main() {
   lcd.locate(70, 22);
   lcd.printf("C12832A1Z");
 
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST, 16); // contrast low
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST, 40); // contrast high
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(CONTRAST);     // contrast default
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(OFF);          // display off
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(ON);           // display on
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(SLEEP);        // display sleep mode
-  wait(1);
+  ThisThread::sleep_for(1s);
   lcd.display(ON);
 
   while(1) {                 // main loop
     lcd.display(INVERT);     // display inverted
     lcd.display(BOTTOM);     // display rotated
-    wait(2);
+    ThisThread::sleep_for(2s);
     lcd.display(NORM);    // display normal
     lcd.display(TOPVIEW);    // display normal orientation
-    wait(2);
+    ThisThread::sleep_for(2s);
     }
   }
