@@ -24,7 +24,21 @@
  * @param MANUELL
  *
  */
-enum update_t{MANUAL, AUTO};
+enum update_t {
+	MANUAL,
+	AUTO
+	};
+
+/** @brief pixel colors
+ *
+ * @param WHITE pixel set
+ * @param BLACK pixel not set
+ *
+ */
+enum color_t {
+	WHITE,
+	BLACK
+	};
 
 /** @brief display settings
  *
@@ -37,7 +51,16 @@ enum update_t{MANUAL, AUTO};
  * @param TOPVIEW default 0° rotate the screento 180°
  *
  */
-enum modes_t{ON, OFF, SLEEP, DEFAULT, INVERT, BOTTOM, TOPVIEW, CONTRAST, RST};
+enum modes_t {
+	ON,
+	OFF,
+	SLEEP,
+	DEFAULT,
+	INVERT,
+	BOTTOM,
+	TOPVIEW,
+	CONTRAST,
+	};
 
 /** @brief bitmap
  *
@@ -67,15 +90,6 @@ class C12832A1Z : public Stream  {
 		 */
 		C12832A1Z(PinName mosi, PinName sck, PinName reset, PinName a0, PinName cs);
 
-		/** @brief draw a pixel in buffer at x, y black or white
-		 *
-		 * @param x horizontal position
-		 * @param y vertical position
-		 * @param colour 1 set pixel, 0 erase pixel
-		 * there is no update, it writes the pixel only in the buffer
-		 */
-		void pixel(int x, int y, uint8_t color);
-
 		/** @brief draw a single point
 		 *
 		 * @param x horizontal position
@@ -83,7 +97,7 @@ class C12832A1Z : public Stream  {
 		 * @param colour 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void point(int x, int y, uint8_t color);
+		void point(int x, int y, color_t color = BLACK);
 
 		/** @brief draw a 1 pixel line
 		 *
@@ -92,7 +106,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void line(int x0, int y0, int x1, int y1, uint8_t color);
+		void line(int x0, int y0, int x1, int y1, color_t color = BLACK);
 
 		/** @brief draw a rect
 		 *
@@ -101,7 +115,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void rectangle(int x0, int y0, int x1, int y1, uint8_t color);
+		void rectangle(int x0, int y0, int x1, int y1, color_t color = BLACK);
 
 		/** @brief draw a filled rect
 		 *
@@ -110,7 +124,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void fillrect(int x0, int y0, int x1, int y1, uint8_t color);
+		void fillrect(int x0, int y0, int x1, int y1, color_t color = BLACK);
 
 		/** @brief draw a rounded rect
 		 *
@@ -120,7 +134,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void roundrect(int x0, int y0, int x1, int y1, int rnd, uint8_t color);
+		void roundrect(int x0, int y0, int x1, int y1, int rnd, color_t color = BLACK);
 
 		/** @brief draw a filled rounded rect
 		 *
@@ -130,7 +144,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void fillrrect(int x0, int y0, int x1, int y1, int rnd, uint8_t color);
+		void fillrrect(int x0, int y0, int x1, int y1, int rnd, color_t color = BLACK);
 
 
 		/** @brief draw a circle
@@ -140,7 +154,7 @@ class C12832A1Z : public Stream  {
 		 * @param color 1 set pixel, 0 erase pixel
 		 *
 		 */
-		void circle(int x, int y, int r, uint8_t color);
+		void circle(int x, int y, int r, color_t color = BLACK);
 
 		/** @brief draw a filled circle
 		 *
@@ -152,7 +166,7 @@ class C12832A1Z : public Stream  {
 		 * can miss some pixel
 		 *
 		 */
-		void fillcircle(int x, int y, int r, uint8_t color);
+		void fillcircle(int x, int y, int r, color_t color = BLACK);
 
 		/** @brief copy display buffer to lcd
 		 *
@@ -194,15 +208,6 @@ class C12832A1Z : public Stream  {
 		 */
 		void cls();
 
-		/** @brief draw a character on given position out of the active font to the LCD
-		 *
-		 * @param x x-position of char (top left)
-		 * @param y y-position
-		 * @param c char to print
-		 *
-		 */
-		void character(uint8_t x, uint8_t y, uint8_t c);
-
 		/** @brief set top left position of char/printf
 		 *
 		 * @param x x-position
@@ -239,43 +244,21 @@ class C12832A1Z : public Stream  {
 
 	protected:
 
-		/** @brief stream class, put a char on the screen
-		 *
-		 * @param value char to print
-		 * @returns printed char
-		 *
-		 */
-		virtual int _putc(int value);
+		void pixel(int x, int y, color_t color = BLACK);
+		void character(uint8_t x, uint8_t y, uint8_t c);
 
-		/** @brief stream class, dummy
-		 *
-		 */
+		virtual int _putc(int value);
 		virtual int _getc();
 
-		/** @brief init the C12832A1Z LCD
-		 *
-		 */
 		void init();
-
-		/** @brief write data to the LCD controller
-		 *
-		 * @param dat data written to LCD controller
-		 *
-		 */
 		void write_data(uint8_t data);
-
-		/** @brief write a command the LCD controller
-		 *
-		 * @param cmd command to be written
-		 *
-		 */
 		void write_command(uint8_t command); // Write a command the LCD controller
 
 		// declarations
-		SPI _spi;
-		DigitalOut _reset;
-		DigitalOut _a0;
-		DigitalOut _cs;
+		SPI spi;
+		DigitalOut rst;
+		DigitalOut select;
+		DigitalOut cs1;
 
 		// Variables
 		uint8_t *font_buffer;
